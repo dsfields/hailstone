@@ -1,0 +1,14 @@
+.DS_Store
+.tmp
+.idea
+.map
+
+**/*.log
+
+node_modules
+
+dist
+build
+bin
+
+src/public

@@ -85,3 +85,14 @@ console.log(id.type);
 
 ## Chances of Collision
 The probability of id collisions within a single system are negligable.  The pseudo-random number portion of each Hailstone identifier is generated using the Node.js cryptographic PRNG, which has more than adequate distribution to avoid collisions.  The 64-bit version utilizes 40 bits for the PRN, which translates into a 1 in 2,199,023,255,551 chance of collision per domain and entity pairing.  The 128 bit version utilies 104 bits for the PRN, which translates into a 1 in 340,282,366,920,938,463,463,374,607,431,751,434,240 chance of collision per domain and type pariing.
+
+## Encoding
+Hailstone identifiers are encoded using RFC 1924 base85 with a slightly modified alphabet, with the intention of making encoded values more URL-friendly.  The code used in this library is based on [Alexander Olsson's](https://github.com/noseglid) [base85](https://github.com/noseglid/base85) module.  Some key differences are:
+
+* The code has been optimized for the hailstone use case.
+* Uses a modified, non-canon alphabet.
+
+### Alphabet
+```
+!$%()*,-.0123456789;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~
+```

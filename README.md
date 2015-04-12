@@ -65,7 +65,7 @@ console.log(id.type);
   * Parameters:
     * `value`: a hailstone-base85 string or a Node.js `Buffer` containing a hailstone identifer.
 
-* `Hailstone.create(domain, type, [options, callback]): creates a new hailstone identifier for the specified domain and type.
+* `Hailstone.create(domain, type, [options, callback])`: creates a new hailstone identifier for the specified domain and type.
   * Parameters:
     * `domain`: an unsigned intenger value 0-255.  Each domain identifier should be unique to given a domain, microservice, namespace, etc within a single system.
     * `type`: an unsigned intenger value 0-255.  Each type identifier should be unique to a given entity type within the domain.

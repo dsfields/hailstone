@@ -1,11 +1,31 @@
 ###
 Copyright (c) 2015 Daniel Fields
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to 
+any person obtaining a copy of this software and 
+associated documentation files (the "Software"), 
+to deal in the Software without restriction, 
+including without limitation the rights to use, 
+copy, modify, merge, publish, distribute, 
+sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is 
+furnished to do so, subject to the following 
+conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission 
+notice shall be included in all copies or 
+substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT 
+WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
 
@@ -43,13 +63,13 @@ _encoder = require './encoder'
   Take all of the hailstorm identifier values, 
   and stuff them in a Node buffer.
 ###
-_createBuffer = (ver, len, dom, et, val) ->
+_createBuffer = (ver, len, dom, et, inst) ->
   size = len / 8
   buf = new Buffer size
   buf.writeUInt8 len | (ver - 1), 0
   buf.writeUInt8 dom, 1
   buf.writeUInt8 et, 2
-  val.copy buf, 2, 0, size
+  inst.copy buf, 2, 0, size
   buf
 
 
@@ -67,14 +87,14 @@ _readBuffer = (buf) ->
   dom = buf.readUInt8 1
   et = buf.readUInt8 2
   size = if len is 64 then if len is 64 then 5 else 13
-  val = new Buffer size
+  inst = new Buffer size
   buf.copy val, 0, 3, buflen
   identifier =
     version: ver
     length: len
     domain: dom
     type: et
-    value: val
+    instance: inst
 
 
 ###
@@ -113,7 +133,7 @@ class Hailstone
     buffer = value if buffer instanceof 'Buffer'
     buffer = _encoder.decode value if !buffer?
     throw new Error 'The value must a Buffer or string.' if !buffer?
-    {@version, @length, @domain, @type, @value} = _readBuffer buffer
+    {@version, @length, @domain, @type, @instance} = _readBuffer buffer
 
 
   ###*
@@ -122,7 +142,7 @@ class Hailstone
     @returns {Buffer}
   ###
   toBuffer: () ->
-    _createBuffer @version, @length, @domain, @type, @value
+    _createBuffer @version, @length, @domain, @type, @instance
 
 
   ###*

@@ -1,17 +1,41 @@
 ###
 Copyright (c) 2015 Daniel Fields
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to 
+any person obtaining a copy of this software and 
+associated documentation files (the "Software"), 
+to deal in the Software without restriction, 
+including without limitation the rights to use, 
+copy, modify, merge, publish, distribute, 
+sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is 
+furnished to do so, subject to the following 
+conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission 
+notice shall be included in all copies or 
+substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT 
+WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE 
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ###
 
 
 ###
-This code is based on Alexander Olsson's (https://github.com/noseglid) base85 encoder module (https://github.com/noseglid/base85).  Some key differences are:
-* The code has been optimized for the hailstone use case.
+This code is based on Alexander Olsson's 
+(https://github.com/noseglid) base85 encoder 
+module (https://github.com/noseglid/base85).  
+Some key differences are:
+* The code has been optimized for the hailstone 
+use case.
 * Uses a modified, non-canon alphabet.
 ###
 
@@ -207,7 +231,7 @@ module.exports =
     len = buf.length
     pad = if len % 4 is 0 then 0 else 4 - len % 4
     val = ''
-    for i = 0; i < len; i += 4
+    for i in [0...len] by 4
       int = ((buf[i] << 24) >>> 0) +
       (((if i + 1 > len then 0 else buf[i + 1]) << 16) >>> 0) +
       (((if i + 2 > len then 0 else buf[i + 2]) << 8) >>> 0) +
@@ -232,7 +256,7 @@ module.exports =
     len = val.length
     writeAt = 0
     dec = _alphabet.dec
-    for i = 0; i < len;
+    for i in [0...len]
       int = dec[val[i]] * 0x31C84B1
       i++
       int += (if i >= len then 0x54 else dec[val[i]]) * 0x23E5FD

@@ -3,9 +3,10 @@
     "node": true
   },
   "rules": {
+    "eol-last": 0,
     "no-alert": 2,
     "no-array-constructor": 2,
-    "no-bitwise": 1,
+    "no-bitwise": 0,
     "no-caller": 2,
     "no-catch-shadow": 2,
     "no-comma-dangle": 2,
@@ -51,6 +52,7 @@
     "no-shadow": 0,
     "no-sync": 0,
     "no-ternary": 0,
+    "no-trailing-spaces": 0,
     "no-undef": 0,
     "no-undef-init": 2,
     "no-underscore-dangle": 0,
@@ -61,7 +63,6 @@
     "no-with": 2,
     "no-wrap-func": 2,
     "no-yoda": 0,
-
     "block-scoped-var": 0,
     "brace-style": 0,
     "camelcase": 0,
@@ -73,7 +74,7 @@
     "eqeqeq": 2,
     "guard-for-in": 0,
     "max-depth": [0, 4],
-    "max-len": [0, 80, 4],
+    "max-len": [0, 100, 4],
     "max-params": [0, 3],
     "max-statements": [0, 10],
     "new-cap": 0,
@@ -88,6 +89,7 @@
     "use-isnan": 2,
     "valid-jsdoc": 2,
     "wrap-iife": 0,
-    "wrap-regex": 0
+    "wrap-regex": 0,
+    "yoda": 0
   }
 }

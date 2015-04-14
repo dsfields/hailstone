@@ -27,7 +27,7 @@ The header value consists of two piece of information:
 * Version: the algorithm version for the hailstone identifier.  This value takes up the first 4 bits of the header byte, which provides a maximum of 16 algorithm version (though there is currently only one.)
 * Size: can be either 64 or 128, which means size only needs to utilize the 7 or 8 bit position on the header byte.
 
-These to values are bitwise `OR`ed together for encoding, and bitwise `AND`ed when decoded.
+These two values are bitwise `OR`ed together for encoding, and bitwise `AND`ed when decoded.
 
 ### Domain & Type Identifiers
 The domain and type identifier portions are intended to provide some additional system-specific information about entity instances the hailstone value is identifying.  Each domain identifier is specific to a system implementing hailstone, and each type identifier is specific to that domain.  All identifiers must be an unsigned integer from 0 to 255.
@@ -84,7 +84,7 @@ console.log(id.type);
 * `id.type`: the entity type identifier of the `Hailstone` instance.
 
 ## Chances of Collision
-The probability of id collisions within a single system are negligable.  The pseudo-random number portion of each Hailstone identifier is generated using the Node.js cryptographic PRNG, which has more than adequate distribution to avoid collisions.  The 64-bit version utilizes 40 bits for the PRN, which translates into a 1 in 2,199,023,255,551 chance of collision per domain and entity pairing.  The 128 bit version utilies 104 bits for the PRN, which translates into a 1 in 340,282,366,920,938,463,463,374,607,431,751,434,240 chance of collision per domain and type pariing.
+The probability of id collisions within a single system are negligable.  The pseudo-random number portion of each Hailstone identifier is generated using the Node.js cryptographic PRNG, which has more than adequate distribution to avoid collisions.  The 64-bit version utilizes 40 bits for the PRN, which translates into a 1 in 2,199,023,255,551 chance of collision per domain and entity pairing.  The 128 bit version utilies 104 bits for the PRN, which translates into a 1 in 340,282,366,920,938,463,463,374,607,431,751,434,240 chance of collision per domain and type pairing.
 
 ## Encoding
 Hailstone identifiers are encoded using RFC 1924 base85 with a slightly modified alphabet, with the intention of making encoded values more URL-friendly.  The code used in this library is based on [Alexander Olsson's](https://github.com/noseglid) [base85](https://github.com/noseglid/base85) module.  Some key differences are:

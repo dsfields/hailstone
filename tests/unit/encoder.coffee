@@ -3,6 +3,14 @@ assert = chai.assert
 
 Encoder = require '../../src/encoder'
 
+bequals = (bufA, bufB) ->
+  (return false) if bufA.length isnt bufB.length
+  i = 0
+  while i < bufA.length
+    (return false) if bufA[i] isnt bufB[i]
+    i++
+  true
+
 describe 'Encoder', () ->
 
   describe 'with 128 bits', () ->
@@ -20,7 +28,7 @@ describe 'Encoder', () ->
     describe '#decode', () ->
       decoded = Encoder.decode encoded
       it 'should equal the original value', () ->
-        assert buf.equals(decoded), 'the decoded buffer is the original value'
+        assert bequals(decoded, buf), 'the decoded buffer is the original value'
 
   describe 'with 64 bits', () ->
     buf = new Buffer 8
@@ -36,4 +44,4 @@ describe 'Encoder', () ->
     describe '#decode', () ->
       decoded = Encoder.decode encoded
       it 'should equal the original value', () ->
-        assert buf.equals(decoded), 'the decoded buffer is the original value'
+        assert bequals(decoded, buf), 'the decoded buffer is the original value'

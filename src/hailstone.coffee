@@ -96,8 +96,6 @@ _readBuffer = (buf) ->
     domain: dom
     type: et
     instance: inst
-  console.log identifier
-  identifier
 
 
 ###

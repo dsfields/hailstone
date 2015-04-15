@@ -1,5 +1,7 @@
 # hailstone
 
+[![Build Status](https://secure.travis-ci.org/dsfields/hailstone.svg)]
+
 A simple, lightweight, stateless utility for generating quasi-unique, variable length identifiers with embedded type information.  Hailstone is intended as a method of providing unique identifiers within a system
 
 A hailstone identifier is a 64 or 128 bit value encoded using RFC 1924 base85 encoding with a slightly modified, more URL-friendly alphabet.  This results in either a fairly compact 10 or 20 character value respectively.
@@ -71,7 +73,7 @@ console.log(id.type);
     * `type`: an unsigned intenger value 0-255.  Each type identifier should be unique to a given entity type within the domain.
     * `options`: optional values for controlling behavior.
       * `length`: the total number of bits of the hailstone identifier.  Can be 64 or 128.  The default is 128.
-    * `callback`: A standard EventLoop callback function pointer.  Node.js's crypto RNG method relies on an pool of entropy values to ensure randomness and distribution. It is indeed possible for the entropy pool can become exhausted.  Node.js crypto will throw an error if this happens. To prevent errors, a callback function parameter is provided, thus allowing calling threads a method to wait in a non-blocking manner for the Node.js crypto to gather sufficient entropy to generate a PRN.
+    * `callback`: A standard EventLoop callback function pointer.  Node.js's crypto RNG method relies on an pool of entropy values to ensure randomness and distribution. It is indeed possible for the entropy pool to become exhausted.  Node.js crypto will throw an error if this happens. To prevent errors, a callback function parameter is provided, thus allowing calling threads a method to wait in a non-blocking manner for the Node.js crypto to gather sufficient entropy to generate a PRN.
 
 * `Hailstone.createAsync(domain, type, [options])`: The same as the aforementioned `create()` method, but returns a then-able promise.
 

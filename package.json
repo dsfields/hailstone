@@ -65,8 +65,6 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha"
-  },
-  "author": "Daniel Fields",
-  "license": "MIT"
+    "test": "gulp test"
+  }
 }

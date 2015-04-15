@@ -1,6 +1,6 @@
 # hailstone
 
-[![Build Status](https://secure.travis-ci.org/dsfields/hailstone.svg)]
+[![Build Status](https://secure.travis-ci.org/dsfields/hailstone.svg)](https://travis-ci.org/dsfields/hailstone)
 
 A simple, lightweight, stateless utility for generating quasi-unique, variable length identifiers with embedded type information.  Hailstone is intended as a method of providing unique identifiers within a system
 
